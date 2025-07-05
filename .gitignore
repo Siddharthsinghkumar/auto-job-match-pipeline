@@ -1,0 +1,18 @@
+# Ignore data and models
+data/
+models/
+
+# Ignore common file types
+*.pdf
+*.png
+*.jpg
+*.jpeg
+*.pth
+*.ckpt
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Environment variables
+.env

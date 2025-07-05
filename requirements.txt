@@ -1,0 +1,7 @@
+pytesseract
+pdf2image
+PyPDF2
+langdetect
+python-telegram-bot
+openai
+tqdm
