@@ -62,17 +62,39 @@ Send Alert       Delete PDF
 ---
 
 ## 📂 Folder Structure
+
 ```
 job-search-ai-pipeline/
-├── data/                  # Raw, processed PDFs & text
-├── resumes/               # Store your resumes
-├── src/                   # Source code
-├── models/                # Pretrained layout detection models
-├── main.py                # End-to-end runner
-├── config.yaml            # API keys & paths
-├── requirements.txt       # Python dependencies
-└── README.md              # This file
+├── data/
+│   ├── raw_pdfs/               # Directly downloaded PDFs (raw)
+│   ├── processed_pdfs/         # PDFs after layout detection / cleaning
+│   ├── processed_images/       # Images extracted from PDFs (for OCR/layout detection)
+│   ├── pdf2img/                # Temp folder for intermediate PDF → image conversions
+│   ├── extracted_text/         # OCR-extracted raw text from images
+│   └── jobs_json/              # Parsed, structured job data in JSON format
+│
+├── resumes/
+│   ├── resume_ee.txt           # Electrical resume
+│   └── resume_aiml.txt         # AI/ML resume
+│
+├── src/
+│   ├── download_pdfs.py        # Script to download daily newspaper PDFs
+│   ├── pdf2img.py              # Convert PDFs to images (using pdf2image, etc.)
+│   ├── layout_detect_blocks.py # Detect text/image blocks in pages (Detectron2, LayoutParser, etc.)
+│   ├── layout_donut_pipeline.py# Donut/Transformer-based OCR + layout-aware extraction
+│   ├── parse_jobs.py           # Rule-based or ML/NLP-based job extraction
+│   ├── match_resume.py         # Resume-job matching with OpenAI GPT or local LLM
+│   └── feedback_loop.py        # (Future) Self-learning from feedback
+│
+├── models/
+│   └── detectron2_publaynet/   # Pretrained layout detection models (optional)
+│
+├── main.py                     # Pipeline orchestrator (runs all steps end-to-end)
+├── config.yaml                  # Config: API keys, paths, hyperparameters, newspaper URLs
+├── README.md                    # Project overview, setup, usage instructions
+└── requirements.txt             # List of dependencies
 ```
+
 
 ---
 
